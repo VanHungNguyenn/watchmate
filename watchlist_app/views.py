@@ -10,3 +10,16 @@ def movie_list(request):
     data = list(movies.values())
 
     return JsonResponse(data, safe=False)
+
+
+def movie_details(request, pk):
+    movie = Movie.objects.get(pk=pk)
+    print(movie)
+
+    data = {
+        "name": movie.name,
+        "description": movie.description,
+        "active": movie.active,
+    }
+
+    return JsonResponse(data)
